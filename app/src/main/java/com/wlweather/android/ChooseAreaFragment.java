@@ -1,7 +1,8 @@
-package com.wlweather.android.util;
+package com.wlweather.android;
 
 import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,8 @@ import com.wlweather.android.R;
 import com.wlweather.android.db.City;
 import com.wlweather.android.db.County;
 import com.wlweather.android.db.Province;
+import com.wlweather.android.util.HttpUtil;
+import com.wlweather.android.util.Utility;
 
 import org.litepal.crud.DataSupport;
 
@@ -88,6 +91,12 @@ public class ChooseAreaFragment extends Fragment{
                 }else if (currentLevel ==LEVEL_CITY){
                     selectedCity= cityList.get(position);
                     queryCounties();
+                }else if (currentLevel ==LEVEL_COUNTY){
+                    String weatherId= countyList.get(position).getweatherId();
+                    Intent intent= new Intent(getActivity(),WeatherActivity.class);
+                    intent.putExtra("weather_id",weatherId);
+                    startActivity(intent);
+                    getActivity().finish();
                 }
             }
         });
@@ -234,4 +243,5 @@ public class ChooseAreaFragment extends Fragment{
             progressDialog.dismiss();
         }
     }
+
 }

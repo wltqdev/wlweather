@@ -1,0 +1,19 @@
+package com.wlweather.android.gson;
+
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
+/**
+ * Created by Frederic on 2017/4/1.
+ */
+
+public class Weather {
+    public String status;
+    public Basic basic;
+    public API api;
+    public Now now;
+    public Suggestion suggestion;
+    @SerializedName("daily_foracast")
+    public List<Forecast> forecastList;
+}
